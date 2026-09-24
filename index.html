@@ -1,198 +1,780 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Bài khảo sát - BVĐK Hưng Hà</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
+
             margin: 0;
             padding: 20px;
+
             min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-family: Arial, sans-serif;
+
             background: #f2f5f8;
         }
 
+
         .container {
+
             width: 100%;
             max-width: 430px;
+
             background: white;
+
             padding: 35px 25px;
+
             border-radius: 16px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.12);
+
             text-align: center;
         }
 
+
         h1 {
+
             font-size: 22px;
+
             margin: 0 0 10px;
+
+            line-height: 1.4;
         }
+
 
         h2 {
+
             font-size: 18px;
+
             margin: 0 0 30px;
+
             color: #444;
+
+            line-height: 1.4;
         }
+
 
         .description {
+
             font-size: 16px;
+
             margin-bottom: 15px;
+
+            line-height: 1.5;
         }
+
 
         input {
+
             width: 100%;
+
             padding: 15px;
+
             font-size: 18px;
+
             border: 1px solid #aaa;
+
             border-radius: 8px;
+
             outline: none;
+
             margin-bottom: 15px;
+
+            text-align: center;
         }
 
+
         input:focus {
+
             border: 2px solid #0078d4;
         }
 
+
         button {
+
             width: 100%;
+
             padding: 15px;
+
             border: none;
+
             border-radius: 8px;
+
             background: #0078d4;
+
             color: white;
+
             font-size: 17px;
+
             font-weight: bold;
+
             cursor: pointer;
         }
 
+
         button:hover {
+
             background: #006cbd;
         }
 
-        #thongbao {
-            min-height: 22px;
-            margin-top: 15px;
-            color: #d00000;
-            font-weight: bold;
+
+        button:active {
+
+            transform: scale(0.99);
         }
+
+
+        #thongbao {
+
+            min-height: 22px;
+
+            margin-top: 18px;
+
+            color: #d00000;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+        }
+
+
+        #thoigian {
+
+            margin-top: 20px;
+
+            font-size: 14px;
+
+            color: #666;
+        }
+
+
+        .timezone {
+
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            color: #999;
+        }
+
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-    <h1>BỆNH VIỆN ĐA KHOA HƯNG HÀ</h1>
 
-    <h2>BÀI KHẢO SÁT NHÂN VIÊN VỀ ACHS</h2>
+    <!-- TÊN ĐƠN VỊ -->
+
+    <h1>
+        BỆNH VIỆN ĐA KHOA HƯNG HÀ
+    </h1>
+
+
+    <!-- TÊN BÀI KHẢO SÁT -->
+
+    <h2>
+        BÀI KHẢO SÁT NHÂN VIÊN VỀ ACHS
+    </h2>
+
+
+    <!-- HƯỚNG DẪN -->
 
     <p class="description">
+
         Vui lòng nhập mật khẩu để bắt đầu bài khảo sát
+
     </p>
 
+
+    <!-- Ô NHẬP MẬT KHẨU -->
+
     <input
+
         type="password"
+
         id="password"
+
         placeholder="Nhập mật khẩu"
+
         autocomplete="off"
+
+        inputmode="numeric"
+
     >
 
+
+    <!-- NÚT BẮT ĐẦU -->
+
     <button onclick="kiemTraMatKhau()">
+
         BẮT ĐẦU KHẢO SÁT
+
     </button>
+
+
+    <!-- THÔNG BÁO -->
 
     <div id="thongbao"></div>
 
+
+    <!-- ĐỒNG HỒ -->
+
+    <div id="thoigian"></div>
+
+    <div class="timezone">
+        Giờ Việt Nam
+    </div>
+
+
 </div>
 
+
+
 <script>
-// LINK MICROSOFT FORMS
-// GIỮ NGUYÊN LINK FORM HIỆN TẠI CỦA BẠN
-const LINK_FORM = "LINK_MICROSOFT_FORMS_CUA_BAN";
+
+
+/* =====================================================
+
+   LINK MICROSOFT FORMS
+
+   THAY LINK BÊN DƯỚI BẰNG LINK FORM THẬT
+
+===================================================== */
+
+
+const LINK_FORM =
+    "LINK_MICROSOFT_FORMS_CUA_BAN";
+
+
+
+/* =====================================================
+
+   LẤY THỜI GIAN VIỆT NAM
+
+   Múi giờ: Asia/Ho_Chi_Minh
+
+   Ví dụ:
+
+   1 PM  = 13:00
+   2 PM  = 14:00
+   3 PM  = 15:00
+   4 PM  = 16:00
+
+===================================================== */
+
+
+function layGioVietNam() {
+
+
+    const now = new Date();
+
+
+    const formatter =
+        new Intl.DateTimeFormat(
+
+            "en-GB",
+
+            {
+
+                timeZone:
+                    "Asia/Ho_Chi_Minh",
+
+                hour:
+                    "2-digit",
+
+                minute:
+                    "2-digit",
+
+                second:
+                    "2-digit",
+
+                hour12:
+                    false
+
+            }
+
+        );
+
+
+    const parts =
+        formatter.formatToParts(now);
+
+
+    let gio = 0;
+
+    let phut = 0;
+
+    let giay = 0;
+
+
+    for (const part of parts) {
+
+
+        if (part.type === "hour") {
+
+            gio =
+                parseInt(part.value);
+
+        }
+
+
+        if (part.type === "minute") {
+
+            phut =
+                parseInt(part.value);
+
+        }
+
+
+        if (part.type === "second") {
+
+            giay =
+                parseInt(part.value);
+
+        }
+
+    }
+
+
+    return {
+
+        gio: gio,
+
+        phut: phut,
+
+        giay: giay
+
+    };
+
+}
+
+
+
+/* =====================================================
+
+   XÁC ĐỊNH MẬT KHẨU THEO KHUNG GIỜ
+
+===================================================== */
+
+
+function layMatKhauTheoGio() {
+
+
+    const thoiGian =
+        layGioVietNam();
+
+
+    const gio =
+        thoiGian.gio;
+
+
+    const phut =
+        thoiGian.phut;
+
+
+    /*
+       Chuyển giờ thành tổng số phút.
+
+       Ví dụ:
+
+       14:00
+       = 14 x 60
+       = 840 phút
+
+       14:30
+       = 14 x 60 + 30
+       = 870 phút
+    */
+
+
+    const tongPhut =
+        gio * 60 + phut;
+
+
+
+    /* =========================================
+
+       CA 1
+
+       13:30 - 14:30
+
+       MẬT KHẨU: 1510
+
+    ========================================= */
+
+
+    if (
+
+        tongPhut >=
+            (13 * 60 + 30)
+
+        &&
+
+        tongPhut <=
+            (14 * 60 + 30)
+
+    ) {
+
+        return "1510";
+
+    }
+
+
+
+    /* =========================================
+
+       CA 2
+
+       14:31 - 15:30
+
+       MẬT KHẨU: 0000
+
+    ========================================= */
+
+
+    else if (
+
+        tongPhut >=
+            (14 * 60 + 31)
+
+        &&
+
+        tongPhut <=
+            (15 * 60 + 30)
+
+    ) {
+
+        return "0000";
+
+    }
+
+
+
+    /* =========================================
+
+       CA 3
+
+       15:31 - 16:30
+
+       MẬT KHẨU: 8386
+
+    ========================================= */
+
+
+    else if (
+
+        tongPhut >=
+            (15 * 60 + 31)
+
+        &&
+
+        tongPhut <=
+            (16 * 60 + 30)
+
+    ) {
+
+        return "8386";
+
+    }
+
+
+
+    /* =========================================
+
+       NGOÀI KHUNG GIỜ
+
+    ========================================= */
+
+
+    else {
+
+        return null;
+
+    }
+
+}
+
+
+
+/* =====================================================
+
+   KIỂM TRA MẬT KHẨU
+
+===================================================== */
 
 
 function kiemTraMatKhau() {
 
+
+    const oMatKhau =
+        document.getElementById(
+            "password"
+        );
+
+
+    const thongBao =
+        document.getElementById(
+            "thongbao"
+        );
+
+
     const matKhauNhap =
-        document.getElementById("password").value;
+        oMatKhau.value.trim();
 
-    // Lấy thời gian hiện tại
-    const bayGio = new Date();
 
-    const gio = bayGio.getHours();
-    const phut = bayGio.getMinutes();
+    /* Nếu chưa nhập mật khẩu */
 
-    // Quy đổi thành tổng số phút trong ngày
-    const tongPhut = gio * 60 + phut;
 
-    let matKhauDung = null;
+    if (matKhauNhap === "") {
 
-    // 13:30 - 14:30
-    if (tongPhut >= 13 * 60 + 30 &&
-        tongPhut <= 14 * 60 + 30) {
 
-        matKhauDung = "1510";
-    }
+        thongBao.innerText =
+            "Vui lòng nhập mật khẩu.";
 
-    // 14:31 - 15:30
-    else if (tongPhut >= 14 * 60 + 31 &&
-             tongPhut <= 15 * 60 + 30) {
 
-        matKhauDung = "0000";
-    }
+        oMatKhau.focus();
 
-    // 15:31 - 16:30
-    else if (tongPhut >= 15 * 60 + 31 &&
-             tongPhut <= 16 * 60 + 30) {
-
-        matKhauDung = "8386";
-    }
-
-    // Ngoài giờ thi
-    else {
-
-        document.getElementById("thongbao").innerText =
-            "Hiện không nằm trong thời gian làm bài.";
 
         return;
+
     }
 
 
-    // Kiểm tra mật khẩu
+
+    /* Lấy mật khẩu tương ứng với giờ hiện tại */
+
+
+    const matKhauDung =
+        layMatKhauTheoGio();
+
+
+
+    /* =========================================
+
+       NGOÀI KHUNG GIỜ KHẢO SÁT
+
+    ========================================= */
+
+
+    if (matKhauDung === null) {
+
+
+        thongBao.innerText =
+            "Hiện không nằm trong thời gian thực hiện khảo sát.";
+
+
+        oMatKhau.value = "";
+
+
+        return;
+
+    }
+
+
+
+    /* =========================================
+
+       MẬT KHẨU ĐÚNG
+
+    ========================================= */
+
+
     if (matKhauNhap === matKhauDung) {
 
-        window.location.href = LINK_FORM;
 
-    } else {
+        thongBao.style.color =
+            "green";
 
-        document.getElementById("thongbao").innerText =
+
+        thongBao.innerText =
+            "Mật khẩu chính xác. Đang chuyển đến bài khảo sát...";
+
+
+        /*
+           Chờ một chút rồi chuyển sang
+           Microsoft Forms
+        */
+
+
+        setTimeout(function () {
+
+
+            window.location.href =
+                LINK_FORM;
+
+
+        }, 500);
+
+
+    }
+
+
+
+    /* =========================================
+
+       MẬT KHẨU SAI
+
+    ========================================= */
+
+
+    else {
+
+
+        thongBao.style.color =
+            "#d00000";
+
+
+        thongBao.innerText =
             "Mật khẩu không chính xác!";
 
-        document.getElementById("password").value = "";
 
-        document.getElementById("password").focus();
+        oMatKhau.value = "";
+
+
+        oMatKhau.focus();
+
     }
+
 }
 
 
-// Nhấn Enter để xác nhận
-document.getElementById("password")
-    .addEventListener("keydown", function(event) {
 
-        if (event.key === "Enter") {
-            kiemTraMatKhau();
+/* =====================================================
+
+   HIỂN THỊ ĐỒNG HỒ VIỆT NAM
+
+===================================================== */
+
+
+function hienThiThoiGian() {
+
+
+    const thoiGian =
+        layGioVietNam();
+
+
+    const gio =
+        String(
+            thoiGian.gio
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const phut =
+        String(
+            thoiGian.phut
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const giay =
+        String(
+            thoiGian.giay
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "thoigian"
+    ).innerText =
+
+        "Thời gian hiện tại: "
+        + gio
+        + ":"
+        + phut
+        + ":"
+        + giay;
+
+}
+
+
+
+/* =====================================================
+
+   CẬP NHẬT ĐỒNG HỒ MỖI GIÂY
+
+===================================================== */
+
+
+hienThiThoiGian();
+
+
+setInterval(
+
+    hienThiThoiGian,
+
+    1000
+
+);
+
+
+
+/* =====================================================
+
+   NHẤN ENTER CŨNG CÓ THỂ XÁC NHẬN
+
+===================================================== */
+
+
+document
+    .getElementById(
+        "password"
+    )
+    .addEventListener(
+
+        "keydown",
+
+        function(event) {
+
+
+            if (
+                event.key === "Enter"
+            ) {
+
+
+                kiemTraMatKhau();
+
+            }
+
         }
 
-    });
+    );
+
+
 </script>
 
+
 </body>
+
 </html>
