@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài kiểm tra - BVĐK Hưng Hà</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: #f2f5f8;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 0 0 30px;
+            color: #444;
+        }
+
+        .description {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        input:focus {
+            border: 2px solid #0078d4;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #0078d4;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #006cbd;
+        }
+
+        #thongbao {
+            min-height: 22px;
+            margin-top: 15px;
+            color: #d00000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>BỆNH VIỆN ĐA KHOA HƯNG HÀ</h1>
+
+    <h2>BÀI KIỂM TRA KIẾN THỨC</h2>
+
+    <p class="description">
+        Vui lòng nhập mật khẩu để bắt đầu bài thi
+    </p>
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Nhập mật khẩu"
+        autocomplete="off"
+    >
+
+    <button onclick="kiemTraMatKhau()">
+        BẮT ĐẦU THI
+    </button>
+
+    <div id="thongbao"></div>
+
+</div>
+
+<script>
+
+    // ==========================
+    // MẬT KHẨU BÀI THI
+    // ==========================
+
+    const MAT_KHAU = "1510";
+
+
+    // ==========================
+    // LINK MICROSOFT FORMS
+    // ==========================
+
+    const LINK_FORM = "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__gjzwzBUNzhUUlQyS1VNN0FWUkRLMUtOV1lMREUxRC4u&Token=6fdc485122c54da2a98f531ea613257a";
+
+
+    function kiemTraMatKhau() {
+
+        const matKhauNhap =
+            document.getElementById("password").value;
+
+        if (matKhauNhap === MAT_KHAU) {
+
+            window.location.href = LINK_FORM;
+
+        } else {
+
+            document.getElementById("thongbao").innerText =
+                "Mật khẩu không chính xác!";
+
+            document.getElementById("password").value = "";
+
+            document.getElementById("password").focus();
+        }
+    }
+
+
+    // Nhấn Enter cũng có thể bắt đầu thi
+
+    document.getElementById("password")
+        .addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+                kiemTraMatKhau();
+            }
+
+        });
+
+</script>
+
+</body>
+</html>
