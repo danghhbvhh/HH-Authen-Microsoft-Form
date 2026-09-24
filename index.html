@@ -114,53 +114,84 @@
 </div>
 
 <script>
-
-    // ==========================
-    // MẬT KHẨU BÀI KHẢO SÁT
-    // ==========================
-
-    const MAT_KHAU = "1510";
+// LINK MICROSOFT FORMS
+// GIỮ NGUYÊN LINK FORM HIỆN TẠI CỦA BẠN
+const LINK_FORM = "LINK_MICROSOFT_FORMS_CUA_BAN";
 
 
-    // ==========================
-    // LINK MICROSOFT FORMS
-    // ==========================
+function kiemTraMatKhau() {
 
-    const LINK_FORM = "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__gjzwzBUNzhUUlQyS1VNN0FWUkRLMUtOV1lMREUxRC4u&Token=6fdc485122c54da2a98f531ea613257a";
+    const matKhauNhap =
+        document.getElementById("password").value;
 
+    // Lấy thời gian hiện tại
+    const bayGio = new Date();
 
-    function kiemTraMatKhau() {
+    const gio = bayGio.getHours();
+    const phut = bayGio.getMinutes();
 
-        const matKhauNhap =
-            document.getElementById("password").value;
+    // Quy đổi thành tổng số phút trong ngày
+    const tongPhut = gio * 60 + phut;
 
-        if (matKhauNhap === MAT_KHAU) {
+    let matKhauDung = null;
 
-            window.location.href = LINK_FORM;
+    // 13:30 - 14:30
+    if (tongPhut >= 13 * 60 + 30 &&
+        tongPhut <= 14 * 60 + 30) {
 
-        } else {
+        matKhauDung = "1510";
+    }
 
-            document.getElementById("thongbao").innerText =
-                "Mật khẩu không chính xác!";
+    // 14:31 - 15:30
+    else if (tongPhut >= 14 * 60 + 31 &&
+             tongPhut <= 15 * 60 + 30) {
 
-            document.getElementById("password").value = "";
+        matKhauDung = "0000";
+    }
 
-            document.getElementById("password").focus();
-        }
+    // 15:31 - 16:30
+    else if (tongPhut >= 15 * 60 + 31 &&
+             tongPhut <= 16 * 60 + 30) {
+
+        matKhauDung = "8386";
+    }
+
+    // Ngoài giờ thi
+    else {
+
+        document.getElementById("thongbao").innerText =
+            "Hiện không nằm trong thời gian làm bài.";
+
+        return;
     }
 
 
-    // Nhấn Enter cũng có thể bắt đầu thi
+    // Kiểm tra mật khẩu
+    if (matKhauNhap === matKhauDung) {
 
-    document.getElementById("password")
-        .addEventListener("keydown", function(event) {
+        window.location.href = LINK_FORM;
 
-            if (event.key === "Enter") {
-                kiemTraMatKhau();
-            }
+    } else {
 
-        });
+        document.getElementById("thongbao").innerText =
+            "Mật khẩu không chính xác!";
 
+        document.getElementById("password").value = "";
+
+        document.getElementById("password").focus();
+    }
+}
+
+
+// Nhấn Enter để xác nhận
+document.getElementById("password")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            kiemTraMatKhau();
+        }
+
+    });
 </script>
 
 </body>
