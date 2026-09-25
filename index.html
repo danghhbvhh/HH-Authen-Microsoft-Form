@@ -2,16 +2,17 @@
 <html lang="vi">
 
 <head>
-
     <meta charset="UTF-8">
+
+    <!-- Hạn chế cache -->
     <meta http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate">
+          content="no-cache, no-store, must-revalidate">
 
-<meta http-equiv="Pragma"
-      content="no-cache">
+    <meta http-equiv="Pragma"
+          content="no-cache">
 
-<meta http-equiv="Expires"
-      content="0">
+    <meta http-equiv="Expires"
+          content="0">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
@@ -19,13 +20,11 @@
     <title>Bài khảo sát - BVĐK Hưng Hà</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
 
         body {
-
             margin: 0;
             padding: 20px;
 
@@ -35,229 +34,280 @@
             align-items: center;
             justify-content: center;
 
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
 
-            background: #f2f5f8;
+            background: #f1f4f8;
         }
 
-
         .container {
-
             width: 100%;
-            max-width: 430px;
+            max-width: 500px;
 
             background: white;
 
-            padding: 35px 25px;
+            padding: 35px 30px;
 
             border-radius: 16px;
 
-            box-shadow:
-                0 5px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 
             text-align: center;
         }
 
-
         h1 {
-
-            font-size: 22px;
-
             margin: 0 0 10px;
 
-            line-height: 1.4;
+            font-size: 25px;
+            color: #000;
         }
-
 
         h2 {
-
-            font-size: 18px;
-
             margin: 0 0 30px;
 
+            font-size: 20px;
             color: #444;
-
-            line-height: 1.4;
         }
 
-
         .description {
-
-            font-size: 16px;
+            text-align: left;
 
             margin-bottom: 15px;
 
-            line-height: 1.5;
+            font-size: 16px;
         }
 
-
         input {
-
             width: 100%;
 
-            padding: 15px;
+            padding: 16px;
 
             font-size: 18px;
 
             border: 1px solid #aaa;
-
             border-radius: 8px;
 
             outline: none;
 
             margin-bottom: 15px;
-
-            text-align: center;
         }
-
 
         input:focus {
-
-            border: 2px solid #0078d4;
+            border-color: #2f7bdc;
         }
 
-
         button {
-
             width: 100%;
 
-            padding: 15px;
+            padding: 16px;
 
             border: none;
-
             border-radius: 8px;
 
-            background: #0078d4;
+            background: #2f7bdc;
 
             color: white;
 
             font-size: 17px;
-
             font-weight: bold;
 
             cursor: pointer;
         }
 
-
         button:hover {
-
-            background: #006cbd;
+            background: #2568bd;
         }
-
-
-        button:active {
-
-            transform: scale(0.99);
-        }
-
 
         #thongbao {
+            min-height: 24px;
 
-            min-height: 22px;
+            margin-top: 15px;
 
-            margin-top: 18px;
-
-            color: #d00000;
-
+            font-size: 15px;
             font-weight: bold;
-
-            line-height: 1.5;
         }
 
+        .loi {
+            color: #d93025;
+        }
+
+        .dung {
+            color: #188038;
+        }
 
         #thoigian {
-
             margin-top: 20px;
 
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: bold;
 
-            color: #666;
+            color: #444;
         }
-
 
         .timezone {
-
             margin-top: 5px;
 
-            font-size: 12px;
+            font-size: 13px;
 
-            color: #999;
+            color: #777;
         }
 
 
-    </style>
+        /* ==============================
+           KHU VỰC QR
+        ============================== */
 
+        #qrBox {
+            display: none;
+        }
+
+        #qrBox h2 {
+            margin-bottom: 10px;
+
+            color: #188038;
+        }
+
+        #qrBox p {
+            font-size: 16px;
+
+            line-height: 1.5;
+
+            color: #444;
+        }
+
+        #qrBox img {
+            display: block;
+
+            width: 100%;
+            max-width: 430px;
+
+            margin: 20px auto;
+
+            border-radius: 12px;
+        }
+
+        .qr-note {
+            font-size: 14px !important;
+
+            color: #777 !important;
+        }
+
+
+        /* ==============================
+           ĐIỆN THOẠI
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 28px 20px;
+            }
+
+            h1 {
+                font-size: 21px;
+            }
+
+            h2 {
+                font-size: 17px;
+            }
+
+            #qrBox img {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 
 
 <body>
 
-
 <div class="container">
 
 
-    <!-- TÊN ĐƠN VỊ -->
+    <!-- ==============================
+         MÀN HÌNH NHẬP MẬT KHẨU
+    ============================== -->
 
-    <h1>
-        BỆNH VIỆN ĐA KHOA HƯNG HÀ
-    </h1>
+    <div id="loginBox">
 
+        <h1>
+            BỆNH VIỆN ĐA KHOA HƯNG HÀ
+        </h1>
 
-    <!-- TÊN BÀI KHẢO SÁT -->
-
-    <h2>
-        BÀI KHẢO SÁT NHÂN VIÊN VỀ ACHS
-    </h2>
-
-
-    <!-- HƯỚNG DẪN -->
-
-    <p class="description">
-
-        Vui lòng nhập mật khẩu để bắt đầu bài khảo sát
-
-    </p>
+        <h2>
+            BÀI KHẢO SÁT NHÂN VIÊN VỀ ACHS
+        </h2>
 
 
-    <!-- Ô NHẬP MẬT KHẨU -->
-
-    <input
-
-        type="password"
-
-        id="password"
-
-        placeholder="Nhập mật khẩu"
-
-        autocomplete="off"
-
-        inputmode="numeric"
-
-    >
+        <div class="description">
+            Vui lòng nhập mật khẩu để bắt đầu bài khảo sát
+        </div>
 
 
-    <!-- NÚT BẮT ĐẦU -->
-
-    <button onclick="kiemTraMatKhau()">
-
-        BẮT ĐẦU KHẢO SÁT
-
-    </button>
-
-
-    <!-- THÔNG BÁO -->
-
-    <div id="thongbao"></div>
+        <input
+            type="password"
+            id="matkhau"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="10"
+            placeholder="Nhập mật khẩu"
+            autocomplete="off"
+        >
 
 
-    <!-- ĐỒNG HỒ -->
+        <button onclick="kiemTraMatKhau()">
+            BẮT ĐẦU KHẢO SÁT
+        </button>
 
-    <div id="thoigian"></div>
 
-    <div class="timezone">
-        Giờ Việt Nam
+        <div id="thongbao"></div>
+
+
+        <div id="thoigian"></div>
+
+        <div class="timezone">
+            Giờ Việt Nam
+        </div>
+
     </div>
 
+
+
+    <!-- ==============================
+         MÀN HÌNH QR
+    ============================== -->
+
+    <div id="qrBox">
+
+        <h1>
+            BỆNH VIỆN ĐA KHOA HƯNG HÀ
+        </h1>
+
+        <h2>
+            MÃ QR BÀI KHẢO SÁT
+        </h2>
+
+
+        <p>
+            Xác thực thành công.
+            Vui lòng quét mã QR bên dưới để thực hiện bài khảo sát.
+        </p>
+
+
+        <img
+            src="qr.jpg"
+            alt="Mã QR bài khảo sát ACHS"
+        >
+
+
+        <p class="qr-note">
+            Mã QR chỉ được hiển thị sau khi nhập đúng mật khẩu.
+        </p>
+
+    </div>
 
 </div>
 
@@ -265,523 +315,399 @@
 
 <script>
 
-
-/* =====================================================
-
-   LINK MICROSOFT FORMS
-
-   THAY LINK BÊN DƯỚI BẰNG LINK FORM THẬT
-
-===================================================== */
-
-
-const LINK_FORM =
-    "LINK_MICROSOFT_FORMS_CUA_BAN";
-
-
-
-/* =====================================================
-
-   LẤY THỜI GIAN VIỆT NAM
-
-   Múi giờ: Asia/Ho_Chi_Minh
-
-   Ví dụ:
-
-   1 PM  = 13:00
-   2 PM  = 14:00
-   3 PM  = 15:00
-   4 PM  = 16:00
-
-===================================================== */
-
-
-function layGioVietNam() {
-
-
-    const now = new Date();
-
-
-    const formatter =
-        new Intl.DateTimeFormat(
-
-            "en-GB",
-
-            {
-
-                timeZone:
-                    "Asia/Ho_Chi_Minh",
-
-                hour:
-                    "2-digit",
-
-                minute:
-                    "2-digit",
-
-                second:
-                    "2-digit",
-
-                hour12:
-                    false
-
-            }
-
-        );
-
-
-    const parts =
-        formatter.formatToParts(now);
-
-
-    let gio = 0;
-
-    let phut = 0;
-
-    let giay = 0;
-
-
-    for (const part of parts) {
-
-
-        if (part.type === "hour") {
-
-            gio =
-                parseInt(part.value);
-
-        }
-
-
-        if (part.type === "minute") {
-
-            phut =
-                parseInt(part.value);
-
-        }
-
-
-        if (part.type === "second") {
-
-            giay =
-                parseInt(part.value);
-
-        }
-
-    }
-
-
-    return {
-
-        gio: gio,
-
-        phut: phut,
-
-        giay: giay
-
-    };
-
-}
-
-
-
-/* =====================================================
-
-   XÁC ĐỊNH MẬT KHẨU THEO KHUNG GIỜ
-
-===================================================== */
-
-
-function layMatKhauTheoGio() {
-
-
-    const thoiGian =
-        layGioVietNam();
-
-
-    const gio =
-        thoiGian.gio;
-
-
-    const phut =
-        thoiGian.phut;
-
-
     /*
-       Chuyển giờ thành tổng số phút.
+    ============================================================
+        CẤU HÌNH MẬT KHẨU
+    ============================================================
 
-       Ví dụ:
+        07:00 - 12:00  → 1111
 
-       14:00
-       = 14 x 60
-       = 840 phút
+        13:30 - 14:30  → 1510
 
-       14:30
-       = 14 x 60 + 30
-       = 870 phút
+        14:31 - 15:30  → 0001
+
+        15:31 - 16:30  → 8386
+
+    ============================================================
     */
 
 
-    const tongPhut =
-        gio * 60 + phut;
+    function layGioVietNam() {
+
+        const formatter =
+            new Intl.DateTimeFormat(
+                "en-GB",
+                {
+                    timeZone: "Asia/Ho_Chi_Minh",
+
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+
+                    hour12: false
+                }
+            );
 
 
-
-    /* =========================================
-
-       CA 1
-
-       13:30 - 14:30
-
-       MẬT KHẨU: 1510
-
-    ========================================= */
+        const parts =
+            formatter.formatToParts(
+                new Date()
+            );
 
 
-    if (
+        let gio = 0;
+        let phut = 0;
+        let giay = 0;
 
-        tongPhut >=
-            (13 * 60 + 30)
 
-        &&
+        for (const part of parts) {
 
-        tongPhut <=
-            (14 * 60 + 30)
+            if (part.type === "hour") {
+                gio = parseInt(part.value);
+            }
 
-    ) {
+            if (part.type === "minute") {
+                phut = parseInt(part.value);
+            }
 
-        return "1510";
+            if (part.type === "second") {
+                giay = parseInt(part.value);
+            }
+        }
 
+
+        return {
+            gio: gio,
+            phut: phut,
+            giay: giay
+        };
     }
 
 
 
-    /* =========================================
+    /*
+    ============================================================
+        XÁC ĐỊNH MẬT KHẨU THEO KHUNG GIỜ
+    ============================================================
+    */
 
-       CA 2
+    function layMatKhauTheoGio() {
 
-       14:31 - 15:30
+        const thoiGian =
+            layGioVietNam();
 
-       MẬT KHẨU: 0001
 
-    ========================================= */
+        const tongPhut =
+            thoiGian.gio * 60
+            +
+            thoiGian.phut;
 
-
-    else if (
-
-        tongPhut >=
-            (14 * 60 + 31)
-
-        &&
-
-        tongPhut <=
-            (15 * 60 + 30)
-
-    ) {
-
-        return "0001";
-
-    }
-
-
-
-    /* =========================================
-
-       CA 3
-
-       15:31 - 16:30
-
-       MẬT KHẨU: 8386
-
-    ========================================= */
-
-
-    else if (
-
-        tongPhut >=
-            (15 * 60 + 31)
-
-        &&
-
-        tongPhut <=
-            (16 * 60 + 30)
-
-    ) {
-
-        return "8386";
-
-    }
-
-
-
-    /* =========================================
-
-       NGOÀI KHUNG GIỜ
-
-    ========================================= */
-
-
-    else {
-
-        return null;
-
-    }
-
-}
-
-
-
-/* =====================================================
-
-   KIỂM TRA MẬT KHẨU
-
-===================================================== */
-
-
-function kiemTraMatKhau() {
-
-
-    const oMatKhau =
-        document.getElementById(
-            "password"
-        );
-
-
-    const thongBao =
-        document.getElementById(
-            "thongbao"
-        );
-
-
-    const matKhauNhap =
-        oMatKhau.value.trim();
-
-
-    /* Nếu chưa nhập mật khẩu */
-
-
-    if (matKhauNhap === "") {
-
-
-        thongBao.innerText =
-            "Vui lòng nhập mật khẩu.";
-
-
-        oMatKhau.focus();
-
-
-        return;
-
-    }
-
-
-
-    /* Lấy mật khẩu tương ứng với giờ hiện tại */
-
-
-    const matKhauDung =
-        layMatKhauTheoGio();
-
-
-
-    /* =========================================
-
-       NGOÀI KHUNG GIỜ KHẢO SÁT
-
-    ========================================= */
-
-
-    if (matKhauDung === null) {
-
-
-        thongBao.innerText =
-            "Hiện không nằm trong thời gian thực hiện khảo sát.";
-
-
-        oMatKhau.value = "";
-
-
-        return;
-
-    }
-
-
-
-    /* =========================================
-
-       MẬT KHẨU ĐÚNG
-
-    ========================================= */
-
-
-    if (matKhauNhap === matKhauDung) {
-
-
-        thongBao.style.color =
-            "green";
-
-
-        thongBao.innerText =
-            "Mật khẩu chính xác. Đang chuyển đến bài khảo sát...";
 
 
         /*
-           Chờ một chút rồi chuyển sang
-           Microsoft Forms
+        --------------------------------------------------------
+            KHUNG 1
+
+            07:00 - 12:00
+
+            Mật khẩu: 1111
+        --------------------------------------------------------
         */
 
+        if (
+            tongPhut >= (7 * 60)
+            &&
+            tongPhut <= (12 * 60)
+        ) {
 
-        setTimeout(function () {
+            return "1111";
+        }
 
 
-            window.location.href =
-                LINK_FORM;
+
+        /*
+        --------------------------------------------------------
+            KHUNG 2
+
+            13:30 - 14:30
+
+            Mật khẩu: 1510
+        --------------------------------------------------------
+        */
+
+        else if (
+            tongPhut >= (13 * 60 + 30)
+            &&
+            tongPhut <= (14 * 60 + 30)
+        ) {
+
+            return "1510";
+        }
 
 
-        }, 500);
+
+        /*
+        --------------------------------------------------------
+            KHUNG 3
+
+            14:31 - 15:30
+
+            Mật khẩu: 0001
+        --------------------------------------------------------
+        */
+
+        else if (
+            tongPhut >= (14 * 60 + 31)
+            &&
+            tongPhut <= (15 * 60 + 30)
+        ) {
+
+            return "0001";
+        }
 
 
+
+        /*
+        --------------------------------------------------------
+            KHUNG 4
+
+            15:31 - 16:30
+
+            Mật khẩu: 8386
+        --------------------------------------------------------
+        */
+
+        else if (
+            tongPhut >= (15 * 60 + 31)
+            &&
+            tongPhut <= (16 * 60 + 30)
+        ) {
+
+            return "8386";
+        }
+
+
+
+        /*
+        --------------------------------------------------------
+            NGOÀI KHUNG GIỜ
+        --------------------------------------------------------
+        */
+
+        return null;
     }
 
 
 
-    /* =========================================
+    /*
+    ============================================================
+        KIỂM TRA MẬT KHẨU
+    ============================================================
+    */
 
-       MẬT KHẨU SAI
+    function kiemTraMatKhau() {
 
-    ========================================= */
-
-
-    else {
-
-
-        thongBao.style.color =
-            "#d00000";
+        const input =
+            document.getElementById("matkhau");
 
 
-        thongBao.innerText =
-            "Mật khẩu không chính xác!";
+        const thongBao =
+            document.getElementById("thongbao");
 
 
-        oMatKhau.value = "";
+        const matKhauNhap =
+            input.value.trim();
 
 
-        oMatKhau.focus();
-
-    }
-
-}
+        const matKhauDung =
+            layMatKhauTheoGio();
 
 
 
-/* =====================================================
+        /*
+            Chưa nhập mật khẩu
+        */
 
-   HIỂN THỊ ĐỒNG HỒ VIỆT NAM
+        if (matKhauNhap === "") {
 
-===================================================== */
+            thongBao.className = "loi";
 
+            thongBao.innerText =
+                "Vui lòng nhập mật khẩu.";
 
-function hienThiThoiGian() {
-
-
-    const thoiGian =
-        layGioVietNam();
-
-
-    const gio =
-        String(
-            thoiGian.gio
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const phut =
-        String(
-            thoiGian.phut
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const giay =
-        String(
-            thoiGian.giay
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    document.getElementById(
-        "thoigian"
-    ).innerText =
-
-        "Thời gian hiện tại: "
-        + gio
-        + ":"
-        + phut
-        + ":"
-        + giay;
-
-}
+            return;
+        }
 
 
 
-/* =====================================================
+        /*
+            Ngoài thời gian khảo sát
+        */
 
-   CẬP NHẬT ĐỒNG HỒ MỖI GIÂY
+        if (matKhauDung === null) {
 
-===================================================== */
+            thongBao.className = "loi";
 
+            thongBao.innerText =
+                "Hiện không nằm trong thời gian thực hiện khảo sát.";
 
-hienThiThoiGian();
+            input.value = "";
 
-
-setInterval(
-
-    hienThiThoiGian,
-
-    1000
-
-);
+            return;
+        }
 
 
 
-/* =====================================================
+        /*
+            Mật khẩu chính xác
+        */
 
-   NHẤN ENTER CŨNG CÓ THỂ XÁC NHẬN
+        if (matKhauNhap === matKhauDung) {
 
-===================================================== */
+            thongBao.className = "dung";
 
-
-document
-    .getElementById(
-        "password"
-    )
-    .addEventListener(
-
-        "keydown",
-
-        function(event) {
+            thongBao.innerText =
+                "Xác thực thành công.";
 
 
-            if (
-                event.key === "Enter"
-            ) {
+            /*
+                Sau 300ms sẽ ẩn màn hình đăng nhập
+                và hiện QR
+            */
+
+            setTimeout(
+                function () {
+
+                    document
+                        .getElementById("loginBox")
+                        .style
+                        .display = "none";
 
 
-                kiemTraMatKhau();
+                    document
+                        .getElementById("qrBox")
+                        .style
+                        .display = "block";
 
-            }
+                },
+                300
+            );
 
         }
 
+
+        /*
+            Sai mật khẩu
+        */
+
+        else {
+
+            thongBao.className = "loi";
+
+            thongBao.innerText =
+                "Mật khẩu không chính xác.";
+
+            input.value = "";
+
+            input.focus();
+        }
+    }
+
+
+
+    /*
+    ============================================================
+        HIỂN THỊ ĐỒNG HỒ
+    ============================================================
+    */
+
+    function hienThiThoiGian() {
+
+        const thoiGian =
+            layGioVietNam();
+
+
+        const gio =
+            String(
+                thoiGian.gio
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        const phut =
+            String(
+                thoiGian.phut
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        const giay =
+            String(
+                thoiGian.giay
+            ).padStart(
+                2,
+                "0"
+            );
+
+
+        document
+            .getElementById("thoigian")
+            .innerText =
+                "Thời gian hiện tại: "
+                +
+                gio
+                +
+                ":"
+                +
+                phut
+                +
+                ":"
+                +
+                giay;
+    }
+
+
+
+    /*
+    ============================================================
+        NHẤN ENTER ĐỂ XÁC NHẬN
+    ============================================================
+    */
+
+    document
+        .getElementById("matkhau")
+        .addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    kiemTraMatKhau();
+                }
+            }
+        );
+
+
+
+    /*
+    ============================================================
+        KHỞI ĐỘNG ĐỒNG HỒ
+    ============================================================
+    */
+
+    hienThiThoiGian();
+
+
+    setInterval(
+        hienThiThoiGian,
+        1000
     );
 
-
 </script>
-
 
 </body>
 
